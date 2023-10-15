@@ -1,0 +1,31 @@
+config-version: 1
+
+# The root folder for the database change scripts
+root-folder: './db_setup'
+
+# The modules folder for jinja macros and templates to be used across multiple scripts.
+modules-folder: null
+
+# The name of the snowflake account (e.g. xy12345.east-us-2.azure)
+snowflake-account: 'fo83039.us-east-2.aws'
+
+# The name of the snowflake user
+snowflake-user: '{{ env_var('SNOWFLAKE_USER') }}'
+
+# The name of the default role to use. Can be overrideen in the change scripts.
+snowflake-role: 'R_DBT_TEST'
+
+# The name of the default warehouse to use. Can be overridden in the change scripts.
+snowflake-warehouse: 'WH_SP_MIPS'
+
+# Enable autocommit feature for DML commands (the default is False)
+autocommit: false
+
+# Display verbose debugging details during execution (the default is False)
+verbose: true
+
+# Run schemachange in dry run mode (the default is False)
+dry-run: false
+
+# A string to include in the QUERY_TAG that is attached to every SQL statement executed
+query-tag: 'SCHEMACHANGE_DEPLOY'

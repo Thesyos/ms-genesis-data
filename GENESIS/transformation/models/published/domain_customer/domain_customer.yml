@@ -1,0 +1,6 @@
+version: 2
+# this config file is only for account management reports in domain Customer
+
+models:
+- name: DIM_CUSTOMERS
+  description:  Dimension table of CUSTOMER entity. Contains all the information about customers.

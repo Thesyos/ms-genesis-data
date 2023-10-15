@@ -1,0 +1,31 @@
+2023-10-15 22:23:08 — INFO — Running with edr=0.11.0
+2023-10-15 22:23:08 — DEBUG — Running dbt --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir C:\Python38\Lib\site-packages\elementary\monitor\dbt_project --target elementary-dev
+[31;20m2023-10-15 22:23:11 — ERROR — Unable to get the latest invocation: Failed to run dbt command.
+Encountered an error:
+Runtime Error
+  Could not find profile named 'elementary'[0m
+2023-10-15 22:23:11 — DEBUG — Running dbt --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir C:\Python38\Lib\site-packages\elementary\monitor\dbt_project --target elementary-dev
+2023-10-15 22:23:15 — DEBUG — Could not get warehouse info.
+Traceback (most recent call last):
+  File "c:\python38\lib\site-packages\elementary\clients\dbt\dbt_runner.py", line 82, in _run_command
+    result = subprocess.run(
+  File "c:\python38\lib\subprocess.py", line 516, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['dbt', '--log-format', 'json', 'run-operation', 'elementary.log_macro_results', '--args', '{"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}}', '--project-dir', 'C:\\Python38\\Lib\\site-packages\\elementary\\monitor\\dbt_project', '--target', 'elementary-dev']' returned non-zero exit status 2.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\python38\lib\site-packages\elementary\monitor\data_monitoring\data_monitoring.py", line 179, in _get_warehouse_info
+    self.internal_dbt_runner.run_operation(
+  File "c:\python38\lib\site-packages\elementary\clients\dbt\dbt_runner.py", line 152, in run_operation
+    success, command_output = self._run_command(
+  File "c:\python38\lib\site-packages\elementary\clients\dbt\dbt_runner.py", line 93, in _run_command
+    raise DbtCommandError(err, command_args, logs=logs)
+elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
+Encountered an error:
+Runtime Error
+  Could not find profile named 'elementary'
+2023-10-15 22:23:15 — DEBUG — Running dbt --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir C:\Python38\Lib\site-packages\elementary\monitor\dbt_project --target elementary-dev
+[31;20m2023-10-15 22:23:18 — ERROR — Failed to parse Elementary's database and schema.[0m
+2023-10-15 22:23:18 — INFO — Running dbt --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false}} --project-dir C:\Python38\Lib\site-packages\elementary\monitor\dbt_project --target elementary-dev

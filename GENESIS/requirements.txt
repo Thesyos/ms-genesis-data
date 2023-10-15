@@ -1,0 +1,4 @@
+dbt-snowflake
+elementary-data[snowflake]
+schemachange
+pip install snowflake-connector-python

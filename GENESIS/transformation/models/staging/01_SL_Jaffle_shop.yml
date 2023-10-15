@@ -1,0 +1,68 @@
+version: 2
+
+sources:
+- name: Jaffle_shop
+  schema: STG_GENESIS
+  description: Source data for Jaffle shop example
+  tables:
+  - name: VW_RAW_CUSTOMERS
+  - name: VW_RAW_ORDERS
+  - name: VW_RAW_PAYMENTS
+
+models:
+- name: SL_CUSTOMERS
+  description: SL for customers source table
+  columns:
+  - name: id
+    description: PK
+    tags: ['PK']
+    tests:
+      - not_null
+      - unique
+  - name: first_name    
+    tests:
+      - not_null:
+          tags: ['test_dq']
+
+  - name: last_name    
+    tests:
+      - not_null    
+      - dbt_expectations.expect_column_value_lengths_to_be_between:
+          min_value: 2
+          tags: ['test_dq']
+          config:
+            severity: warn
+
+- name: SL_ORDERS
+  description: SL for orders source table. 
+  columns:  
+  - name: order_id
+    description: PK
+    tags: ['PK']
+    tests:
+      - not_null
+      - unique  
+  - name: status   
+    tests:
+      - accepted_values:
+          values: ['completed', 'returned', 'return_pending', 'placed', 'shipped']
+          tags: ['test_dq']
+
+
+- name: SL_PAYMENTS
+  description: SL for payments source table. This is an INCREMENTAL model.
+  +materialized: incremental
+  unique_key: id  
+  on_schema_change: append_new_columns
+  columns:  
+  - name: id
+    description: PK
+    tags: ['PK']
+    tests:
+      - not_null
+      - unique      
+  - name: amount   
+    tests:             
+      - dbt_expectations.expect_column_values_to_be_between:
+          min_value: 0  
+          tags: ['test_dq']

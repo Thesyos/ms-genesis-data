@@ -1,0 +1,23 @@
+version: 2
+
+models:
+- name: TL_CUSTOMERS
+  description: TL for customers table 
+
+- name: TL_ORDERS
+  description: TL for orders table 
+  columns:  
+  - name: customer_id  
+    tests:
+      - relationships:
+          to: ref('TL_CUSTOMERS')
+          field: customer_id
+
+- name: TL_PAYMENTS
+  description: TL for payments table    
+  columns:  
+  - name: order_id
+    tests:
+      - relationships:  
+          to: ref('TL_ORDERS')
+          field: order_id            

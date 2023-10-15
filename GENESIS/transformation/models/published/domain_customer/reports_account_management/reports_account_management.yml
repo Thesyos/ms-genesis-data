@@ -1,0 +1,10 @@
+version: 2
+# this config file is only for account management reports in domain Customer
+
+models:
+- name: R_CUSTOMER_RETENTION
+  description:  Report of customer retention need of action.
+  tests:
+    - dbt_expectations.expect_table_columns_to_contain_set:
+        column_list: ["customer_id", "first_name", "last_name", "customer_lifetime_value", "days_since_last_order", "urgency"]
+        transform: upper # (Optional)

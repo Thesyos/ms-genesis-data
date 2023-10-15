@@ -1,0 +1,50 @@
+genesis:
+  target: dev_live
+  outputs:
+    dev_live:
+      account: fo83039.us-east-2.aws
+      database: "GENESIS_DEV"
+      role: "R_DBT_TEST"
+      schema: TEC_MONITORING
+      threads: 32
+      type: snowflake
+      user: "{{ env_var('SNOWSQL_TRANSFORM_USER') }}"
+      password: "{{ env_var('SNOWSQL_TRANSFORM_PWD') }}"
+      warehouse: WH_SP_MIPS
+      query_tag: "genesis_dev_custom_airflow"
+
+    uat_live:
+      account: fo83039.us-east-2.aws
+      database: "GENESIS_UAT"
+      role: "R_DBT_TEST"
+      schema: TEC_MONITORING
+      threads: 32
+      type: snowflake
+      user: "{{ env_var('SNOWSQL_TRANSFORM_USER') }}"
+      password: "{{ env_var('SNOWSQL_TRANSFORM_PWD') }}"
+      warehouse: WH_SP_MIPS
+      query_tag: "genesis_dev_custom_airflow"
+
+elementary:
+  outputs:
+    elementary-dev:
+      type: "snowflake"
+      account: fo83039.us-east-2.aws
+      user: "{{ env_var('SNOWSQL_TRANSFORM_USER') }}"
+      password: "{{ env_var('SNOWSQL_TRANSFORM_PWD') }}"
+      role: "R_DBT_TEST"
+      warehouse: ATOS_MARKETPLACE_WH_BI
+      database: "GENESIS_DEV"
+      schema: "TEC_MONITORING"
+      threads: 2 
+
+    elementary-uat:
+      type: "snowflake"
+      account: fo83039.us-east-2.aws
+      user: "{{ env_var('SNOWSQL_TRANSFORM_USER') }}"
+      password: "{{ env_var('SNOWSQL_TRANSFORM_PWD') }}"
+      role: "R_DBT_TEST"
+      warehouse: ATOS_MARKETPLACE_WH_BI
+      database: "GENESIS_UAT"
+      schema: "TEC_MONITORING"
+      threads: 2 
